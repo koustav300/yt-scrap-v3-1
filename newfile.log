@@ -1,0 +1,122 @@
+2022-09-11 16:56:30,481  * Debugger is active!
+2022-09-11 16:56:30,496  * Debugger PIN: 488-624-636
+2022-09-11 16:56:30,543  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2022-09-11 16:56:43,366 127.0.0.1 - - [11/Sep/2022 16:56:43] "[37mGET / HTTP/1.1[0m" 200 -
+2022-09-11 16:56:57,977 127.0.0.1 - - [11/Sep/2022 16:56:57] "[37mGET /download_logFile HTTP/1.1[0m" 200 -
+2022-09-11 16:57:05,362 -----------route -fetch data from db---------------------
+2022-09-11 16:57:05,362 finished regex search, matched: (?:\/(user)\/([%\w\d_\-]+)(\/.*)?)
+2022-09-11 16:57:06,592 Ste1-- Completed here
+2022-09-11 16:57:08,341 Ste2-- Completed here
+2022-09-11 16:57:08,951 Peer did not staple an OCSP response
+2022-09-11 16:57:08,951 Requesting OCSP data
+2022-09-11 16:57:08,951 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,045 Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-09-11 16:57:09,185 Peer did not staple an OCSP response
+2022-09-11 16:57:09,185 Requesting OCSP data
+2022-09-11 16:57:09,185 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,185 Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-09-11 16:57:09,342 http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-09-11 16:57:09,342 http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-09-11 16:57:09,342 OCSP response status: <OCSPResponseStatus.SUCCESSFUL: 0>
+2022-09-11 16:57:09,342 OCSP response status: <OCSPResponseStatus.SUCCESSFUL: 0>
+2022-09-11 16:57:09,342 Verifying response
+2022-09-11 16:57:09,342 Verifying response
+2022-09-11 16:57:09,357 Responder is issuer
+2022-09-11 16:57:09,357 Responder is issuer
+2022-09-11 16:57:09,357 Caching OCSP response.
+2022-09-11 16:57:09,357 Caching OCSP response.
+2022-09-11 16:57:09,357 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,357 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,435 Peer did not staple an OCSP response
+2022-09-11 16:57:09,435 Requesting OCSP data
+2022-09-11 16:57:09,435 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,435 Using cached OCSP response.
+2022-09-11 16:57:09,435 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,513 Peer did not staple an OCSP response
+2022-09-11 16:57:09,513 Peer did not staple an OCSP response
+2022-09-11 16:57:09,513 Requesting OCSP data
+2022-09-11 16:57:09,513 Requesting OCSP data
+2022-09-11 16:57:09,513 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,513 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,513 Using cached OCSP response.
+2022-09-11 16:57:09,513 Using cached OCSP response.
+2022-09-11 16:57:09,513 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,513 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,513 Peer did not staple an OCSP response
+2022-09-11 16:57:09,513 Requesting OCSP data
+2022-09-11 16:57:09,513 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,513 Using cached OCSP response.
+2022-09-11 16:57:09,513 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,576 Peer did not staple an OCSP response
+2022-09-11 16:57:09,592 Requesting OCSP data
+2022-09-11 16:57:09,592 Trying http://r3.o.lencr.org
+2022-09-11 16:57:09,592 Using cached OCSP response.
+2022-09-11 16:57:09,592 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:57:09,842 Ste3-- Completed here
+2022-09-11 16:57:09,842 Starting new HTTPS connection (1): i.ytimg.com:443
+2022-09-11 16:57:11,101 https://i.ytimg.com:443 "GET /vi/ngBPXUaScCw/hqdefault.jpg HTTP/1.1" 200 39561
+2022-09-11 16:57:11,179 Starting new HTTPS connection (1): i.ytimg.com:443
+2022-09-11 16:57:11,445 https://i.ytimg.com:443 "GET /vi/bDJkMOvhAmc/hqdefault.jpg HTTP/1.1" 200 31020
+2022-09-11 16:57:11,554 Ste4-- Completed here
+2022-09-11 16:57:11,554 127.0.0.1 - - [11/Sep/2022 16:57:11] "[37mGET /fetch_dataFromDb?channel_name=https%3A%2F%2Fwww.youtube.com%2Fuser%2Fkrishnaik06 HTTP/1.1[0m" 200 -
+2022-09-11 16:57:58,688 -----------route -fetch data from db---------------------
+2022-09-11 16:57:58,688 finished regex search, matched: (?:\/(user)\/([%\w\d_\-]+)(\/.*)?)
+2022-09-11 16:57:59,436 Ste1-- Completed here
+2022-09-11 16:58:00,615 Ste2-- Completed here
+2022-09-11 16:58:00,772 Peer did not staple an OCSP response
+2022-09-11 16:58:00,772 Requesting OCSP data
+2022-09-11 16:58:00,772 Trying http://r3.o.lencr.org
+2022-09-11 16:58:00,772 Peer did not staple an OCSP response
+2022-09-11 16:58:00,772 Requesting OCSP data
+2022-09-11 16:58:00,772 Trying http://r3.o.lencr.org
+2022-09-11 16:58:00,772 Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-09-11 16:58:00,772 Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-09-11 16:58:00,787 Peer did not staple an OCSP response
+2022-09-11 16:58:00,787 Requesting OCSP data
+2022-09-11 16:58:00,787 Trying http://r3.o.lencr.org
+2022-09-11 16:58:00,787 Starting new HTTP connection (1): r3.o.lencr.org:80
+2022-09-11 16:58:00,897 http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-09-11 16:58:00,897 http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-09-11 16:58:00,897 OCSP response status: <OCSPResponseStatus.SUCCESSFUL: 0>
+2022-09-11 16:58:00,897 Verifying response
+2022-09-11 16:58:00,897 Responder is issuer
+2022-09-11 16:58:00,897 http://r3.o.lencr.org:80 "POST / HTTP/1.1" 200 503
+2022-09-11 16:58:00,897 OCSP response status: <OCSPResponseStatus.SUCCESSFUL: 0>
+2022-09-11 16:58:00,897 Verifying response
+2022-09-11 16:58:00,897 OCSP response status: <OCSPResponseStatus.SUCCESSFUL: 0>
+2022-09-11 16:58:00,897 Verifying response
+2022-09-11 16:58:00,897 Caching OCSP response.
+2022-09-11 16:58:00,897 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:00,897 Responder is issuer
+2022-09-11 16:58:00,897 Responder is issuer
+2022-09-11 16:58:00,897 Caching OCSP response.
+2022-09-11 16:58:00,897 Caching OCSP response.
+2022-09-11 16:58:00,912 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:00,912 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:01,037 Peer did not staple an OCSP response
+2022-09-11 16:58:01,053 Requesting OCSP data
+2022-09-11 16:58:01,053 Trying http://r3.o.lencr.org
+2022-09-11 16:58:01,053 Using cached OCSP response.
+2022-09-11 16:58:01,053 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:01,053 Peer did not staple an OCSP response
+2022-09-11 16:58:01,053 Requesting OCSP data
+2022-09-11 16:58:01,053 Trying http://r3.o.lencr.org
+2022-09-11 16:58:01,053 Using cached OCSP response.
+2022-09-11 16:58:01,053 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:01,053 Peer did not staple an OCSP response
+2022-09-11 16:58:01,053 Requesting OCSP data
+2022-09-11 16:58:01,053 Trying http://r3.o.lencr.org
+2022-09-11 16:58:01,053 Using cached OCSP response.
+2022-09-11 16:58:01,053 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:01,053 Peer did not staple an OCSP response
+2022-09-11 16:58:01,053 Requesting OCSP data
+2022-09-11 16:58:01,053 Trying http://r3.o.lencr.org
+2022-09-11 16:58:01,069 Using cached OCSP response.
+2022-09-11 16:58:01,069 OCSP cert status: <OCSPCertStatus.GOOD: 0>
+2022-09-11 16:58:01,351 Ste3-- Completed here
+2022-09-11 16:58:01,351 Starting new HTTPS connection (1): i.ytimg.com:443
+2022-09-11 16:58:01,586 https://i.ytimg.com:443 "GET /vi/ngBPXUaScCw/hqdefault.jpg HTTP/1.1" 200 39561
+2022-09-11 16:58:01,665 Starting new HTTPS connection (1): i.ytimg.com:443
+2022-09-11 16:58:01,915 https://i.ytimg.com:443 "GET /vi/bDJkMOvhAmc/hqdefault.jpg HTTP/1.1" 200 31020
+2022-09-11 16:58:01,984 Ste4-- Completed here
+2022-09-11 16:58:01,993 127.0.0.1 - - [11/Sep/2022 16:58:01] "[37mGET /fetch_dataFromDb?channel_name=https%3A%2F%2Fwww.youtube.com%2Fuser%2Fkrishnaik06 HTTP/1.1[0m" 200 -
