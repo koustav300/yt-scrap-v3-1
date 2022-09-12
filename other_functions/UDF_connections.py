@@ -12,16 +12,31 @@ pwd = "mds268ds"
 
 
 def create_sql_engine():
+    """
+    This function create a mysql engine which allow user to post data in my sql.
+
+    Returns:
+        mysql alchemy engine
+
+    """
+
     # Create SQLAlchemy engine to connect to MySQL Database
     try:
         engine = create_engine("mysql+pymysql://{user}:{pw}@{host}/{db}"
                                .format(host=hostname, db=dbname, user=uname, pw=pwd))
     except Exception as e:
         app.logger('ERROR- from file connection : while connecting to mySQL, Error-key: %s' %(str(e)))
-        raise
     return engine
 
+
 def create_mongodb_conn():
+    """
+    Create connection with mongoDb.
+
+    Returns:
+        MongoDb Connection
+    """
+
     try :
         # creating connection with mongodb
         client = pymongo.MongoClient(
@@ -32,6 +47,15 @@ def create_mongodb_conn():
     return client
 
 def create_pysql_connction():
+    """
+    This function create a py-mysql connection which allow user to run SQL QUERY in server.
+
+    Returns:
+       py-mysql connection
+
+   Note: connection params are taken from Golbal variables
+
+    """
 
     try:
         # Connect to the database

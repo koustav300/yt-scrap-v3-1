@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, request, render_template, jsonify, send_file, send_from_directory
 from pytube import YouTube
 from pytube import Channel
@@ -16,6 +18,7 @@ import requests
 global logger
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 # Create and configure logger
 logging.basicConfig(filename="newfile.log",
@@ -149,8 +152,7 @@ def new_scrap_request():
     try:
         client = con.create_mongodb_conn()
         db = client['mongotest']
-        collection = db['testLoadtest6']
-        # collection.insert_one({channel_url.channel_name: mongo_upload_list})
+        collection = db['testLoadtest7']
         collection.insert_one(mongo_upload_dict)
 
     except Exception as e:
@@ -215,24 +217,41 @@ def fetchDataFromDb():
         IMAGE_FOLDER = 'static/images'
         app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 
+        # ------------creating the Zip
+        zipfolder = zipfile.ZipFile('Imagefiles.zip', 'w', compression=zipfile.ZIP_STORED)  # Compression type
+
         # ----------------processing the files
         for i in range(0, len(vdo_id_list)):
+            # getting the image url
             img_url =  thumbnail_image_urls[i]
+            # fetching the vdo id for file name
             vdo_id  = vdo_id_list[i]
+
+            #img content
             img = requests.get(img_url).content
+            # image file write & close
             fileName= 'image' + vdo_id + '.jpg'
             f = open(os.path.join(app.config['IMAGE_FOLDER'], fileName), 'wb')
             f.write(img)
             f.close()
-        # ------------creating the Zip
-        zipfolder = zipfile.ZipFile('Imagefiles.zip', 'w', compression=zipfile.ZIP_STORED)  # Compression type
-
-        # zip all the files which are inside in the folder
-        for root, dirs, files in os.walk(app.config['IMAGE_FOLDER']):
-            for file in files:
-                zip_dest_path = os.path.join(app.config['IMAGE_FOLDER'], file)
-                zipfolder.write(zip_dest_path)
+            # updating the zip
+            zipfolder.write(os.path.join(app.config['IMAGE_FOLDER'], fileName))
+            # removing the file
+            os.remove(os.path.join(app.config['IMAGE_FOLDER'], fileName))
         zipfolder.close()
+
+        # ------------creating the Zip
+        # zipfolder = zipfile.ZipFile('Imagefiles.zip', 'w', compression=zipfile.ZIP_STORED)  # Compression type
+        #
+        # # zip all the files which are inside in the folder
+        # for root, dirs, files in os.walk(app.config['IMAGE_FOLDER']):
+        #     for file in files:
+        #         zip_dest_path = os.path.join(app.config['IMAGE_FOLDER'], file)
+        #         zipfolder.write(zip_dest_path)
+        # zipfolder.close()
+
+
+
     except Exception as e:
         logger.error("Step4-- ERROR - unable to create zip for images. Error-key: %s" % (str(e)))
         return {
@@ -243,7 +262,7 @@ def fetchDataFromDb():
         logger.error("Ste4-- Completed here")
 
     return jsonify({'basic_info': basicInfo_table_text,
-                        'comment_info': comment_table_text})
+                    'comment_info': comment_table_text})
 
 
 @app.route('/download_videos', methods=['GET'])
@@ -417,12 +436,14 @@ def download():
 @app.route('/download_imgzip')
 def download_imgZip():
     path = 'Imagefiles.zip'
-    return send_file(path, as_attachment=True)
+
+    return send_file(path, as_attachment=True, cache_timeout = 0)
 
 @app.route('/download_logFile')
 def download_logFile():
     path = 'newfile.log'
-    return send_file(path, as_attachment=True)
+    return send_file(path, as_attachment=True, cache_timeout = 0)
+
 
 
 if __name__ == '__main__':

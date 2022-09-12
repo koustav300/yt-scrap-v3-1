@@ -116,6 +116,7 @@ def video_info_comments(video_id):
 
                 # if reply is there
                 reply_list = []
+                replycounter = 0
                 if replycount > 0 and does_have_reply == 'Y':
                     # iterate through all reply
                     for reply in item['replies']['comments']:
@@ -124,7 +125,9 @@ def video_info_comments(video_id):
                         replyer = reply['snippet']['authorDisplayName']
 
                         # Adding replies to the output comment
-                        comment_list[str(comment_counter)]['reply'][str(replycount)] = {replyer: reply_text}
+                        comment_list[str(comment_counter)]['reply'].update({str(replycounter): {} })
+                        comment_list[str(comment_counter)]['reply'][str(replycounter)].update({replyer: reply_text})
+                        replycounter = replycounter +1
                 # increasing the counter
                 comment_counter = comment_counter + 1
 
@@ -244,13 +247,12 @@ def delete_mysql_chhnlData(input_channel_id):
         conn = new_conn.create_pysql_connction()
 
         # creating query string
-        # sql_sqtring = 'SET SQL_SAFE_UPDATES = 0;'
-        sql_sqtring = f"DELETE  from yt_scrape.basic_scrap_info where channel_id = '{input_channel_id}'"
-        # sql_sqtring += 'SET SQL_SAFE_UPDATES = 1;'
-
+        sql_sqtring = f"DELETE from basic_scrap_info where channel_id = '{input_channel_id}';"
+        print(sql_sqtring)
         # create cursor  & Execute query
         cursor = conn.cursor()
         cursor.execute(sql_sqtring)
+        conn.commit()
     except Exception as e:
         app.logger.error('ERROR from file-- UDF_func, Func-name: %s, Error-mag: %s' % (fname, str(e)))
         raise
@@ -283,7 +285,7 @@ def fetch_scrapped_info_frmMysql(input_channel_id):
                 if row_value == 8:
                     html_text += f"<td class='td_thumbnail'> <img src='{row[row_value]}' alt='thumbnail' srcset=''> </td>"
                 elif row_value == 6 or row_value == 9:
-                    print(row_value)
+                    asd =0
                 else:
                     html_text += f"<td>{row[row_value]}</td>"  # creating tds
 
@@ -301,7 +303,7 @@ def delete_comment_info_byChannel(input_channel_name):
         # connecting to mongoDb
         client = new_conn.create_mongodb_conn()
         db = client['mongotest']
-        collection = db['testLoadtest6']
+        collection = db['testLoadtest7']
         collection.delete_many({'channel_name': input_channel_name})
 
     except Exception as e:
@@ -310,12 +312,17 @@ def delete_comment_info_byChannel(input_channel_name):
 
 def fetch_scrapped_info_frmMongoDb(input_channel_name):
     fname = 'fetch_scrapped_info_frmMongoDb'
+
     try:
         # connecting to mongoDb
         client = new_conn.create_mongodb_conn()
         db = client['mongotest']
-        collection = db['testLoadtest6']
+        collection = db['testLoadtest7']
         cursor = collection.find({'channel_name': input_channel_name})
+        # # cursor2 = collection.find({'comments': {'channel_name': input_channel_name})
+        # cursor2 =  collection.find({'channel_name': input_channel_name},{"comments" : 1})
+        # #commentsChain = json.dumps( cursor2 )
+        # print(cursor2)
 
         html_text = ''
         img_url_list  = []
@@ -334,12 +341,24 @@ def fetch_scrapped_info_frmMongoDb(input_channel_name):
                 # for each comment in among the comments
                 for key in comments:
                     comment = comments[key]['comment']
-                    reply = comments[key]['reply']
+                    replies = comments[key]['reply']
 
                     commenter = list(comment.items())[0][0]
                     commentText = list(comment.items())[0][1]
                     # print(commenter, ' - ', commentText)
-                    html_text += f"<tr> <td>{vdo_id}</td> <td>{commenter}</td> <td>{commentText}</td> <td><button class='btn_showtext'>Show details</button></td> </tr>"
+                    html_text += f"<tr> <td>{vdo_id}</td> <td>{commenter}</td> <td>{commentText}</td> <td>Comment</td> <td>-</td> <td>-</td>"
+
+                    for key in replies:
+                        reply = replies[key]
+                        replyer = list(reply.items())[0][0]
+                        replyText = list(reply.items())[0][1]
+
+                        html_text += f"<tr class='tr_reply> <td>-</td> <td>-</td> <td>-</td> <td>Reply</td> <td>{replyer}</td> <td>{replyText}</td>"
+
+                    html_text += '</tr>'
+
+
+
     except Exception as e:
         app.logger.error('ERROR from file-- UDF_func, Func-name: %s, Error-mag: %s' % (fname, str(e)))
         raise
